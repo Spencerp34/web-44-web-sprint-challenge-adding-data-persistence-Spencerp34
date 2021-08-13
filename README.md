@@ -68,17 +68,17 @@ Build the migration(s) in Knex inside the `data/migrations` folder using appropr
 
 Build an API inside the `api` folder with endpoints for:
 
-- [ ] `[POST] /api/resources`
+- [X] `[POST] /api/resources`
   - Example of response body: `{"resource_id":1,"resource_name":"foo","resource_description":null}`
 
-- [ ] `[GET] /api/resources`
+- [X] `[GET] /api/resources`
   - Example of response body: `[{"resource_id":1,"resource_name":"foo","resource_description":null}]`
 
-- [ ] `[POST] /api/projects`
+- [X] `[POST] /api/projects`
   - Even though `project_completed` is stored as an integer, the API uses booleans when interacting with the client
   - Example of response body: `{"project_id":1,"project_name":"bar","project_description":null,"project_completed":false}`
 
-- [ ] `[GET] /api/projects`
+- [X] `[GET] /api/projects`
   - Even though `project_completed` is stored as an integer, the API uses booleans when interacting with the client
   - Example of response body: `[{"project_id":1,"project_name":"bar","project_description":null,"project_completed":false}]`
 
@@ -86,7 +86,7 @@ Build an API inside the `api` folder with endpoints for:
   - Even though `task_completed` is stored as an integer, the API uses booleans when interacting with the client
   - Example of response body: `{"task_id":1,"task_description":"baz","task_notes":null,"task_completed":false,"project_id:1}`
 
-- [ ] `[GET] /api/tasks`
+- [X] `[GET] /api/tasks`
   - Even though `task_completed` is stored as an integer, the API uses booleans when interacting with the client
   - Each task must include `project_name` and `project_description`
   - Example of response body: `[{"task_id":1,"task_description":"baz","task_notes":null,"task_completed":false,"project_name:"bar","project_description":null}]`
@@ -102,16 +102,28 @@ Build an API inside the `api` folder with endpoints for:
 
 ## Submission format
 
-- [ ] Submit via Codegrade by pushing commits to your `<firstName-lastName>` branch on Github.
-- [ ] Check Codegrade before the deadline to compare its results against your local tests.
-- [ ] Check Codegrade on the days following the Sprint Challenge for reviewer feedback.
-- [ ] New commits will be evaluated by Codegrade if pushed _before_ the sprint challenge deadline.
+- [X] Submit via Codegrade by pushing commits to your `<firstName-lastName>` branch on Github.
+- [X] Check Codegrade before the deadline to compare its results against your local tests.
+- [X] Check Codegrade on the days following the Sprint Challenge for reviewer feedback.
+- [X] New commits will be evaluated by Codegrade if pushed _before_ the sprint challenge deadline.
 
 ## Interview Questions
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between Relational Databases and SQL.
+
+Pretty sure SQL is just a language you use to communicate with a relational database. So they are connected but they are all to different. 
+
+
 2. Why do tables need a Primary Key?
+
+Couple of logistical reasons, but the main one is so you may use it as a foreign key to other tables to bind them together.
+
 3. What is the name given to a table column that references the Primary Key on another table?
+
+That would be the foreign key.
+
 4. What do we need in order to have a _many to many_ relationship between two tables?
+
+As my friend Murray put it: "You need an intermediary table that resolves all many:many queries". This means that table has foreign keys to multiple other tables and will create a new row for each subtle difference between data tables. Hard to explain but easy to visualize
