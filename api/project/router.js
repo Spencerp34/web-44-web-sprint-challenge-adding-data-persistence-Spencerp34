@@ -4,7 +4,7 @@ const Project = require('./model')
 
 router.get('/', async(req, res, next) => {
     try{
-        const projects = await Project.getProjects()
+        const projects = await Project.get()
         res.status(200).json(projects)
     }catch(err){
         next(err)
@@ -14,7 +14,7 @@ router.get('/', async(req, res, next) => {
 router.post('/', async(req, res, next) => {
     try{
         const project = req.body
-        const newProject = await Project.addProject(project)
+        const newProject = await Project.add(project)
         res.status(201).json(newProject)
     }catch(err){
         next(err)

@@ -1,12 +1,12 @@
 const db = require('../../data/dbConfig')
 
-async function getProjects(){
+async function get(){
     const rows = await db('projects as p')
         .leftJoin('tasks as t', 'p.project_id', 't.project_id')
         .leftJoin('project_resources as pr', 't.task_id', 'pr.task_id')
         .leftJoin('resources as r', 'pr.resource_id', 'r.resource_id')
         .select('p.project_id',  't.task_id', 'p.project_name', 'p.project_description', 'p.project_completed', 'r.resource_name', 'r.resource_description', 't.task_description', 't.task_notes', 't.task_completed')
-        .orderBy(['p.project_id', 't.task_id']) //Maybe wrong syntax.
+        .orderBy(['p.project_id', 't.task_id']) 
         .groupBy('p.project_id')
 
 
@@ -24,13 +24,12 @@ async function getProjects(){
     return projects
 }
 
-async function addProject(project){
+async function add(project){
     await db('projects').insert(project)
 
-    const newest = await getProjects()
+    const newest = await get()
     const id = newest[newest.length -1]
 
-    // console.log(id)
 
     const formattedData = {
         project_id: id.project_id,
@@ -39,11 +38,10 @@ async function addProject(project){
         project_completed: id.project_completed
     }
 
-    // console.log(formattedData)
     return formattedData
 }
 
 module.exports = {
-    getProjects,
-    addProject
+    get,
+    add
 }
